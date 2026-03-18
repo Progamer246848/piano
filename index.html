@@ -1,45 +1,357 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>🎹 Piano Recordings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Piano Recordings</title>
     <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            margin-top: 50px;
-            background: #f5f5f5;
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #0f0c0a;
+            --bg-soft: #1a1411;
+            --panel: rgba(33, 25, 21, 0.78);
+            --panel-strong: rgba(24, 18, 15, 0.92);
+            --line: rgba(214, 183, 120, 0.2);
+            --text: #f4eee6;
+            --muted: #c8b8a5;
+            --gold: #d8b36a;
+            --gold-soft: rgba(216, 179, 106, 0.2);
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
         }
 
-        .player {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 400px;
-            margin: auto;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Manrope", "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top, rgba(125, 84, 34, 0.24), transparent 30%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 30%),
+                linear-gradient(180deg, #17110e 0%, #0f0c0a 55%, #090706 100%);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 120px),
+                linear-gradient(rgba(255, 255, 255, 0.015) 0, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 120px);
+            opacity: 0.18;
+        }
+
+        .shell {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 48px 0 72px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 56px 56px 44px;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background:
+                linear-gradient(140deg, rgba(216, 179, 106, 0.09), transparent 32%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+                var(--panel-strong);
+            box-shadow: var(--shadow);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto -10% -35% 40%;
+            height: 240px;
+            background: radial-gradient(circle, rgba(216, 179, 106, 0.28), transparent 65%);
+            filter: blur(12px);
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            font-size: 0.76rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--gold);
         }
 
         h1 {
-            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            max-width: 10ch;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(3rem, 7vw, 5.4rem);
+            line-height: 0.92;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .intro {
+            position: relative;
+            z-index: 1;
+            max-width: 620px;
+            margin: 18px 0 0;
+            color: var(--muted);
+            font-size: 1.02rem;
+            line-height: 1.75;
+        }
+
+        .stage {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 22px;
+            margin-top: 24px;
+        }
+
+        .panel,
+        .highlight {
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(8px);
+        }
+
+        .panel {
+            padding: 26px;
+        }
+
+        .panel-title,
+        .highlight-title {
+            margin: 0 0 18px;
+            font-size: 0.82rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .tracks {
+            display: grid;
+            gap: 16px;
+        }
+
+        .track {
+            padding: 20px;
+            border: 1px solid rgba(216, 179, 106, 0.14);
+            border-radius: 18px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+                rgba(8, 7, 6, 0.34);
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .track:hover {
+            transform: translateY(-2px);
+            border-color: rgba(216, 179, 106, 0.3);
+            background:
+                linear-gradient(180deg, rgba(216, 179, 106, 0.08), rgba(255, 255, 255, 0.015)),
+                rgba(8, 7, 6, 0.4);
+        }
+
+        .track-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .track-title {
+            margin: 0;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: 1.05;
+        }
+
+        .track-meta {
+            color: var(--muted);
+            font-size: 0.88rem;
+            white-space: nowrap;
+        }
+
+        .track-note {
+            margin: 0 0 14px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        audio {
+            width: 100%;
+            height: 42px;
+            filter: sepia(0.35) saturate(0.9) hue-rotate(-8deg);
+        }
+
+        .highlight {
+            position: relative;
+            overflow: hidden;
+            padding: 28px;
+        }
+
+        .highlight::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top right, rgba(216, 179, 106, 0.18), transparent 30%),
+                linear-gradient(160deg, transparent 25%, rgba(255, 255, 255, 0.03) 100%);
+            pointer-events: none;
+        }
+
+        .keys {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin: 20px 0 28px;
+        }
+
+        .key {
+            height: 110px;
+            border-radius: 0 0 14px 14px;
+            background: linear-gradient(180deg, #fff7eb 0%, #d8ccbc 100%);
+            box-shadow: inset 0 0 0 1px rgba(73, 54, 36, 0.12), 0 12px 16px rgba(0, 0, 0, 0.18);
+        }
+
+        .quote {
+            position: relative;
+            margin: 0;
+            padding-left: 18px;
+            border-left: 2px solid var(--gold-soft);
+            color: var(--text);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 1.6rem;
+            line-height: 1.25;
+        }
+
+        .quote-note {
+            margin: 14px 0 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 860px) {
+            .shell {
+                width: min(100% - 20px, 1100px);
+                padding: 20px 0 32px;
+            }
+
+            .hero,
+            .panel,
+            .highlight {
+                padding: 22px;
+            }
+
+            .stage {
+                grid-template-columns: 1fr;
+            }
+
+            .track-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .keys {
+                gap: 6px;
+            }
+
+            .key {
+                height: 80px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <main class="shell">
+        <section class="hero">
+            <p class="eyebrow">Private Salon Session</p>
+            <h1>Grand Piano Recordings</h1>
+            <p class="intro">
+                A small recital page for recent piano takes, framed with a darker concert-hall atmosphere and a cleaner
+                listening layout. Each recording below is playable directly in the browser.
+            </p>
+        </section>
 
-    <div class="player">
-        <h1>🎹 Piano Recording</h1>
+        <section class="stage">
+            <div class="panel">
+                <p class="panel-title">Programme</p>
+                <div class="tracks">
+                    <article class="track">
+                        <div class="track-header">
+                            <h2 class="track-title">Mozart</h2>
+                            <span class="track-meta">Sonata No. 2 in F major, K.280</span>
+                        </div>
+                        <p class="track-note">
+                            Classical balance, bright motion, and a lighter first-room opening for the set.
+                        </p>
+                        <audio controls>
+                            <source src="260314_2332_Mozart - Piano Sonata No. 2 in F major, K.280.mp3"
+                                type="audio/mpeg">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </article>
 
-        <p>Mozart - Sonata No.2 in F major</p>
+                    <article class="track">
+                        <div class="track-header">
+                            <h2 class="track-title">Mendelssohn</h2>
+                            <span class="track-meta">Songs Without Words, Op. 67 No. 2</span>
+                        </div>
+                        <p class="track-note">
+                            A more lyrical center piece, placed here as the warm, singing contrast in the programme.
+                        </p>
+                        <audio controls>
+                            <source src="260314_2356_Mendelssohn - Songs Without Words Op. 67 No. 2.mp3"
+                                type="audio/mpeg">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </article>
 
-        <audio controls style="width:100%">
-            <source src="260314_2332_Mozart - Piano Sonata No. 2 in F major, K.280.mp3" type="audio/mpeg">
-            Your browser does not support audio.
-        </audio>
+                    <article class="track">
+                        <div class="track-header">
+                            <h2 class="track-title">Fauré</h2>
+                            <span class="track-meta">Impromptu No. 1, Op. 25</span>
+                        </div>
+                        <p class="track-note">
+                            Richer harmony and more shimmer to close the page with a darker late-evening texture.
+                        </p>
+                        <audio controls>
+                            <source src="260315_0002_Fauré's Impromptu No. 1 Op. 25.mp3" type="audio/mpeg">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </article>
+                </div>
+            </div>
 
-    </div>
-
+            <aside class="highlight">
+                <p class="highlight-title">Listening Room</p>
+                <div class="keys" aria-hidden="true">
+                    <span class="key"></span>
+                    <span class="key"></span>
+                    <span class="key"></span>
+                    <span class="key"></span>
+                    <span class="key"></span>
+                    <span class="key"></span>
+                    <span class="key"></span>
+                </div>
+                <blockquote class="quote">
+                    The room should feel quiet before the first note starts.
+                </blockquote>
+                <p class="quote-note">
+                    This refresh keeps the page simple, but gives it more presence: darker lacquer tones, gold accents,
+                    recital typography, and a cleaner structure for a growing collection of recordings.
+                </p>
+            </aside>
+        </section>
+    </main>
 </body>
 
 </html>
