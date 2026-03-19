@@ -4,21 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand Piano Recordings</title>
+    <title>Andrew Yin | Grand Piano Recordings</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
         :root {
-            --bg: #0f0c0a;
-            --bg-soft: #1a1411;
-            --panel: rgba(33, 25, 21, 0.78);
-            --panel-strong: rgba(24, 18, 15, 0.92);
-            --line: rgba(214, 183, 120, 0.2);
-            --text: #f4eee6;
-            --muted: #c8b8a5;
-            --gold: #d8b36a;
-            --gold-soft: rgba(216, 179, 106, 0.2);
-            --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+            --bg: #090705;
+            --panel: rgba(20, 15, 11, 0.78);
+            --panel-strong: rgba(15, 10, 8, 0.88);
+            --line: rgba(227, 194, 131, 0.18);
+            --text: #f8f1e6;
+            --muted: #d2c0aa;
+            --gold: #e2b86f;
+            --gold-soft: rgba(226, 184, 111, 0.18);
+            --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
         }
 
         * {
@@ -31,9 +30,9 @@
             font-family: "Manrope", "Segoe UI", sans-serif;
             color: var(--text);
             background:
-                radial-gradient(circle at top, rgba(125, 84, 34, 0.24), transparent 30%),
-                linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 30%),
-                linear-gradient(180deg, #17110e 0%, #0f0c0a 55%, #090706 100%);
+                linear-gradient(rgba(8, 6, 4, 0.72), rgba(8, 6, 4, 0.88)),
+                url("boston-piano.jpg") center center / cover fixed no-repeat,
+                var(--bg);
         }
 
         body::before {
@@ -42,72 +41,135 @@
             inset: 0;
             pointer-events: none;
             background:
+                radial-gradient(circle at top left, rgba(188, 141, 62, 0.22), transparent 28%),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 120px),
-                linear-gradient(rgba(255, 255, 255, 0.015) 0, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 120px);
-            opacity: 0.18;
+                linear-gradient(rgba(255, 255, 255, 0.018) 0, rgba(255, 255, 255, 0.018) 1px, transparent 1px, transparent 120px);
+            opacity: 0.72;
+        }
+
+        a {
+            color: inherit;
         }
 
         .shell {
-            width: min(1100px, calc(100% - 32px));
+            position: relative;
+            z-index: 1;
+            width: min(1180px, calc(100% - 32px));
             margin: 0 auto;
-            padding: 48px 0 72px;
+            padding: 34px 0 72px;
         }
 
         .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+            gap: 24px;
             position: relative;
             overflow: hidden;
-            padding: 56px 56px 44px;
+            padding: 34px;
             border: 1px solid var(--line);
-            border-radius: 28px;
+            border-radius: 30px;
             background:
-                linear-gradient(140deg, rgba(216, 179, 106, 0.09), transparent 32%),
-                linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+                linear-gradient(140deg, rgba(226, 184, 111, 0.12), transparent 34%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
                 var(--panel-strong);
             box-shadow: var(--shadow);
+            backdrop-filter: blur(8px);
         }
 
         .hero::after {
             content: "";
             position: absolute;
-            inset: auto -10% -35% 40%;
-            height: 240px;
-            background: radial-gradient(circle, rgba(216, 179, 106, 0.28), transparent 65%);
-            filter: blur(12px);
+            inset: auto -12% -34% 42%;
+            height: 260px;
+            background: radial-gradient(circle, rgba(226, 184, 111, 0.28), transparent 65%);
+            filter: blur(16px);
         }
 
-        .eyebrow {
+        .eyebrow,
+        .panel-title,
+        .highlight-title {
             margin: 0 0 12px;
-            font-size: 0.76rem;
-            letter-spacing: 0.32em;
+            font-size: 0.78rem;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
             color: var(--gold);
         }
 
-        h1 {
+        .hero-copy,
+        .profile-card {
             position: relative;
             z-index: 1;
+        }
+
+        h1 {
             margin: 0;
             max-width: 10ch;
             font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: clamp(3rem, 7vw, 5.4rem);
+            font-size: clamp(3rem, 7vw, 5.2rem);
             line-height: 0.92;
             font-weight: 600;
             letter-spacing: 0.02em;
         }
 
         .intro {
-            position: relative;
-            z-index: 1;
-            max-width: 620px;
+            max-width: 640px;
             margin: 18px 0 0;
             color: var(--muted);
-            font-size: 1.02rem;
-            line-height: 1.75;
+            font-size: 1.03rem;
+            line-height: 1.78;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .hero-pill {
+            padding: 10px 14px;
+            border: 1px solid rgba(226, 184, 111, 0.2);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .profile-card {
+            display: grid;
+            align-content: start;
+            gap: 16px;
+            padding: 18px;
+            border: 1px solid rgba(226, 184, 111, 0.16);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .profile-photo {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid rgba(226, 184, 111, 0.26);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
+        }
+
+        .profile-name {
+            margin: 0;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .profile-note {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
         }
 
         .stage {
             display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
+            grid-template-columns: minmax(0, 1.22fr) minmax(280px, 0.78fr);
             gap: 22px;
             margin-top: 24px;
         }
@@ -118,20 +180,11 @@
             border-radius: 24px;
             background: var(--panel);
             box-shadow: var(--shadow);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
         }
 
         .panel {
             padding: 26px;
-        }
-
-        .panel-title,
-        .highlight-title {
-            margin: 0 0 18px;
-            font-size: 0.82rem;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: var(--gold);
         }
 
         .tracks {
@@ -141,20 +194,20 @@
 
         .track {
             padding: 20px;
-            border: 1px solid rgba(216, 179, 106, 0.14);
+            border: 1px solid rgba(226, 184, 111, 0.12);
             border-radius: 18px;
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
-                rgba(8, 7, 6, 0.34);
+                linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
+                rgba(7, 6, 5, 0.36);
             transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
         }
 
         .track:hover {
             transform: translateY(-2px);
-            border-color: rgba(216, 179, 106, 0.3);
+            border-color: rgba(226, 184, 111, 0.28);
             background:
-                linear-gradient(180deg, rgba(216, 179, 106, 0.08), rgba(255, 255, 255, 0.015)),
-                rgba(8, 7, 6, 0.4);
+                linear-gradient(180deg, rgba(226, 184, 111, 0.1), rgba(255, 255, 255, 0.015)),
+                rgba(7, 6, 5, 0.42);
         }
 
         .track-header {
@@ -168,7 +221,7 @@
         .track-title {
             margin: 0;
             font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: 1.8rem;
+            font-size: 1.85rem;
             font-weight: 600;
             line-height: 1.05;
         }
@@ -188,7 +241,7 @@
         audio {
             width: 100%;
             height: 42px;
-            filter: sepia(0.35) saturate(0.9) hue-rotate(-8deg);
+            filter: sepia(0.35) saturate(0.95) hue-rotate(-8deg);
         }
 
         .highlight {
@@ -202,9 +255,14 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top right, rgba(216, 179, 106, 0.18), transparent 30%),
+                radial-gradient(circle at top right, rgba(226, 184, 111, 0.18), transparent 30%),
                 linear-gradient(160deg, transparent 25%, rgba(255, 255, 255, 0.03) 100%);
             pointer-events: none;
+        }
+
+        .highlight>* {
+            position: relative;
+            z-index: 1;
         }
 
         .keys {
@@ -222,7 +280,6 @@
         }
 
         .quote {
-            position: relative;
             margin: 0;
             padding-left: 18px;
             border-left: 2px solid var(--gold-soft);
@@ -232,16 +289,57 @@
             line-height: 1.25;
         }
 
-        .quote-note {
-            margin: 14px 0 0;
+        .quote-note,
+        .stats,
+        .credit {
             color: var(--muted);
             line-height: 1.7;
         }
 
-        @media (max-width: 860px) {
+        .quote-note {
+            margin: 14px 0 22px;
+        }
+
+        .stats {
+            margin: 0 0 18px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .stats li + li {
+            margin-top: 8px;
+        }
+
+        .credit {
+            margin: 0;
+            font-size: 0.88rem;
+        }
+
+        .credit a {
+            color: var(--gold);
+        }
+
+        @media (max-width: 920px) {
+            .hero,
+            .stage {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                grid-template-columns: 120px 1fr;
+                align-items: center;
+            }
+
+            .profile-photo {
+                aspect-ratio: auto;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 760px) {
             .shell {
-                width: min(100% - 20px, 1100px);
-                padding: 20px 0 32px;
+                width: min(100% - 20px, 1180px);
+                padding: 20px 0 34px;
             }
 
             .hero,
@@ -250,8 +348,13 @@
                 padding: 22px;
             }
 
-            .stage {
+            .profile-card {
                 grid-template-columns: 1fr;
+            }
+
+            .profile-photo {
+                height: auto;
+                aspect-ratio: 1 / 1;
             }
 
             .track-header {
@@ -264,7 +367,7 @@
             }
 
             .key {
-                height: 80px;
+                height: 82px;
             }
         }
     </style>
@@ -273,12 +376,32 @@
 <body>
     <main class="shell">
         <section class="hero">
-            <p class="eyebrow">Private Salon Session</p>
-            <h1>Grand Piano Recordings</h1>
-            <p class="intro">
-                A small recital page for recent piano takes, framed with a darker concert-hall atmosphere and a cleaner
-                listening layout. Each recording below is playable directly in the browser.
-            </p>
+            <div class="hero-copy">
+                <p class="eyebrow">Private Salon Session</p>
+                <h1>Grand Piano Recordings</h1>
+                <p class="intro">
+                    A recital page for recent takes by Andrew Yin, now set against a full-page Boston grand piano image
+                    and expanded to include the complete current programme. Every recording below plays directly in the
+                    browser.
+                </p>
+                <div class="hero-meta">
+                    <span class="hero-pill">7 recordings</span>
+                    <span class="hero-pill">Solo piano</span>
+                    <span class="hero-pill">Boston grand atmosphere</span>
+                </div>
+            </div>
+
+            <aside class="profile-card">
+                <img class="profile-photo" src="AndrewYin Photo.png" alt="Portrait of Andrew Yin">
+                <div>
+                    <p class="eyebrow">Performer</p>
+                    <h2 class="profile-name">Andrew Yin</h2>
+                    <p class="profile-note">
+                        A growing collection of recent piano recordings, ranging from Bach and Mozart to
+                        Faur&eacute;, Jongen, and Sch&uuml;tt.
+                    </p>
+                </div>
+            </aside>
         </section>
 
         <section class="stage">
@@ -287,11 +410,26 @@
                 <div class="tracks">
                     <article class="track">
                         <div class="track-header">
-                            <h2 class="track-title">Mozart</h2>
-                            <span class="track-meta">Sonata No. 2 in F major, K.280</span>
+                            <h2 class="track-title">J.S. Bach</h2>
+                            <span class="track-meta">Prelude &amp; Fuge in G major, BWV 860</span>
                         </div>
                         <p class="track-note">
-                            Classical balance, bright motion, and a lighter first-room opening for the set.
+                            Clear counterpoint and forward motion for a poised opening to the set.
+                        </p>
+                        <audio controls>
+                            <source src="260314_2301_J.S.Bach - Prelude &amp; Fuge in G major, BWV 860.mp3"
+                                type="audio/mpeg">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </article>
+
+                    <article class="track">
+                        <div class="track-header">
+                            <h2 class="track-title">Mozart</h2>
+                            <span class="track-meta">Piano Sonata No. 2 in F major, K.280</span>
+                        </div>
+                        <p class="track-note">
+                            Classical balance, bright motion, and a lighter opening texture.
                         </p>
                         <audio controls>
                             <source src="260314_2332_Mozart - Piano Sonata No. 2 in F major, K.280.mp3"
@@ -306,7 +444,7 @@
                             <span class="track-meta">Songs Without Words, Op. 67 No. 2</span>
                         </div>
                         <p class="track-note">
-                            A more lyrical center piece, placed here as the warm, singing contrast in the programme.
+                            A lyrical center point with a gentler, singing line through the middle of the programme.
                         </p>
                         <audio controls>
                             <source src="260314_2356_Mendelssohn - Songs Without Words Op. 67 No. 2.mp3"
@@ -317,14 +455,59 @@
 
                     <article class="track">
                         <div class="track-header">
-                            <h2 class="track-title">Fauré</h2>
+                            <h2 class="track-title">Faur&eacute;</h2>
                             <span class="track-meta">Impromptu No. 1, Op. 25</span>
                         </div>
                         <p class="track-note">
-                            Richer harmony and more shimmer to close the page with a darker late-evening texture.
+                            Richer harmony and a darker shimmer as the page moves into late-Romantic colour.
                         </p>
                         <audio controls>
-                            <source src="260315_0002_Fauré's Impromptu No. 1 Op. 25.mp3" type="audio/mpeg">
+                            <source src="260315_0002_Faur%C3%A9%27s%20Impromptu%20No.%201%20Op.%2025.mp3"
+                                type="audio/mpeg">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </article>
+
+                    <article class="track">
+                        <div class="track-header">
+                            <h2 class="track-title">Joseph Haydn</h2>
+                            <span class="track-meta">Piano Sonata in G Minor</span>
+                        </div>
+                        <p class="track-note">
+                            Restless phrasing and classical intensity with a sharper dramatic profile.
+                        </p>
+                        <audio controls>
+                            <source src="260315_1330_Joseph Haydn - Piano Sonata in G Minor.mp3" type="audio/mpeg">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </article>
+
+                    <article class="track">
+                        <div class="track-header">
+                            <h2 class="track-title">Jongen</h2>
+                            <span class="track-meta">&Eacute;tude de concert No. 1, Op. 65</span>
+                        </div>
+                        <p class="track-note">
+                            A more virtuosic turn in the programme, with broader sonority and a denser surface.
+                        </p>
+                        <audio controls>
+                            <source src="260315_1336_Jongen - Etude de concert No. 1, op. 65 - 1920.mp3"
+                                type="audio/mpeg">
+                            Your browser does not support audio playback.
+                        </audio>
+                    </article>
+
+                    <article class="track">
+                        <div class="track-header">
+                            <h2 class="track-title">Eduard Sch&uuml;tt</h2>
+                            <span class="track-meta">Romance, Op. 38 No. 2</span>
+                        </div>
+                        <p class="track-note">
+                            A warm, intimate close with a softer melodic profile and a more reflective finish.
+                        </p>
+                        <audio controls>
+                            <source src="260315_1343_Eduard%20Sch%C3%BCtt%20-%20Romance,%20Op%2038%20No%202.mp3"
+                                type="audio/mpeg">
                             Your browser does not support audio playback.
                         </audio>
                     </article>
@@ -346,8 +529,19 @@
                     The room should feel quiet before the first note starts.
                 </blockquote>
                 <p class="quote-note">
-                    This refresh keeps the page simple, but gives it more presence: darker lacquer tones, gold accents,
-                    recital typography, and a cleaner structure for a growing collection of recordings.
+                    The page now carries a stronger recital identity: your portrait in the opening panel, the full set
+                    of uploaded recordings, and a Boston piano image washed into the entire background.
+                </p>
+                <ul class="stats">
+                    <li>Featured composers: Bach, Mozart, Mendelssohn, Faur&eacute;, Haydn, Jongen, Sch&uuml;tt.</li>
+                    <li>Audio format: MP3 playback directly in browser controls.</li>
+                    <li>Layout: responsive for both desktop and mobile screens.</li>
+                </ul>
+                <p class="credit">
+                    Background image:
+                    <a href="https://commons.wikimedia.org/wiki/File:Boston_piano.jpg" target="_blank"
+                        rel="noreferrer">"Boston piano.jpg"</a>
+                    by Alton, via Wikimedia Commons, licensed CC BY 3.0.
                 </p>
             </aside>
         </section>
