@@ -145,13 +145,36 @@
             background: rgba(255, 255, 255, 0.04);
         }
 
+        .profile-button {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            text-align: left;
+        }
+
         .profile-photo {
+            display: block;
             width: 100%;
             aspect-ratio: 1 / 1;
             object-fit: cover;
             border-radius: 20px;
             border: 1px solid rgba(226, 184, 111, 0.26);
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
+            transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        .profile-button:hover .profile-photo,
+        .profile-button:focus-visible .profile-photo {
+            transform: translateY(-2px) scale(1.01);
+            border-color: rgba(226, 184, 111, 0.44);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.32);
+        }
+
+        .profile-button:focus-visible {
+            outline: 2px solid rgba(226, 184, 111, 0.65);
+            outline-offset: 8px;
+            border-radius: 24px;
         }
 
         .profile-name {
@@ -319,6 +342,131 @@
             color: var(--gold);
         }
 
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 30;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            background: rgba(7, 5, 4, 0.72);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 180ms ease, visibility 180ms ease;
+        }
+
+        .modal.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .modal-dialog {
+            position: relative;
+            width: min(760px, 100%);
+            max-height: min(88vh, 920px);
+            overflow: auto;
+            padding: 28px;
+            border: 1px solid rgba(226, 184, 111, 0.2);
+            border-radius: 28px;
+            background:
+                linear-gradient(145deg, rgba(226, 184, 111, 0.08), transparent 32%),
+                rgba(18, 13, 10, 0.96);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(226, 184, 111, 0.2);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus-visible {
+            border-color: rgba(226, 184, 111, 0.42);
+            background: rgba(226, 184, 111, 0.12);
+        }
+
+        .modal-header {
+            display: grid;
+            grid-template-columns: 138px 1fr;
+            gap: 22px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-photo {
+            width: 138px;
+            height: 138px;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 1px solid rgba(226, 184, 111, 0.28);
+            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.28);
+        }
+
+        .modal-title {
+            margin: 0;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(2.6rem, 5vw, 3.4rem);
+            line-height: 0.95;
+            font-weight: 600;
+        }
+
+        .modal-subtitle {
+            margin: 10px 0 0;
+            color: var(--gold);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-size: 0.76rem;
+        }
+
+        .profile-sections {
+            display: grid;
+            gap: 18px;
+        }
+
+        .profile-section {
+            padding: 18px 20px;
+            border: 1px solid rgba(226, 184, 111, 0.1);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .profile-section h3 {
+            margin: 0 0 10px;
+            font-size: 0.82rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .profile-section p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .profile-list {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .profile-list li + li {
+            margin-top: 8px;
+        }
+
         @media (max-width: 920px) {
             .hero,
             .stage {
@@ -357,6 +505,19 @@
                 aspect-ratio: 1 / 1;
             }
 
+            .modal-dialog {
+                padding: 22px 18px 18px;
+            }
+
+            .modal-header {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-photo {
+                width: 112px;
+                height: 112px;
+            }
+
             .track-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -392,7 +553,10 @@
             </div>
 
             <aside class="profile-card">
-                <img class="profile-photo" src="AndrewYin Photo.png" alt="Portrait of Andrew Yin">
+                <button class="profile-button" type="button" id="open-profile"
+                    aria-haspopup="dialog" aria-controls="profile-modal">
+                    <img class="profile-photo" src="AndrewYin Photo.png" alt="Portrait of Andrew Yin">
+                </button>
                 <div>
                     <p class="eyebrow">Performer</p>
                     <h2 class="profile-name">Andrew Yin</h2>
@@ -403,6 +567,76 @@
                 </div>
             </aside>
         </section>
+
+        <div class="modal" id="profile-modal" aria-hidden="true">
+            <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+                <button class="modal-close" type="button" id="close-profile" aria-label="Close profile popup">×</button>
+                <div class="modal-header">
+                    <img class="modal-photo" src="AndrewYin Photo.png" alt="Portrait of Andrew Yin">
+                    <div>
+                        <p class="eyebrow">Artist Profile</p>
+                        <h2 class="modal-title" id="profile-title">Andrew Yin</h2>
+                        <p class="modal-subtitle">Pianist</p>
+                    </div>
+                </div>
+
+                <div class="profile-sections">
+                    <section class="profile-section">
+                        <h3>Profile</h3>
+                        <p>
+                            A talented and dedicated young pianist, Andrew Yin began his musical journey at the age of
+                            4 in Sydney, Australia. Since then, he has quickly distinguished himself through
+                            exceptional performances and awards, marking him as an emerging talent in classical music.
+                            He currently studies under the esteemed Dr. Paul Rickard-Ford in the Sydney
+                            Conservatorium&rsquo;s Rising Stars Program.
+                        </p>
+                    </section>
+
+                    <section class="profile-section">
+                        <h3>Key Achievements</h3>
+                        <ul class="profile-list">
+                            <li>1st Prize - XII International Balys Dvarionas Competition</li>
+                            <li>Multiple Prize Winner - Sydney and St George Eisteddfods</li>
+                            <li>Scholarship Recipient - Sydney Conservatorium&rsquo;s Rising Stars Program since 2022</li>
+                        </ul>
+                    </section>
+
+                    <section class="profile-section">
+                        <h3>Biography</h3>
+                        <p>
+                            Born in the USA, Andrew Yin moved to Sydney, Australia, at the age of 1. He began formal
+                            piano education at 4 and has since advanced rapidly in his musical studies, earning
+                            accolades in prestigious competitions. In 2022, he was awarded a scholarship to the Sydney
+                            Conservatorium&rsquo;s Rising Stars Program, where he continues to hone his skills under the
+                            guidance of Dr. Paul Rickard-Ford.
+                        </p>
+                    </section>
+
+                    <section class="profile-section">
+                        <h3>Education and Training</h3>
+                        <ul class="profile-list">
+                            <li>Piano Studies - Began lessons at age 4 in Sydney, Australia</li>
+                            <li>Rising Stars Program - Sydney Conservatorium of Music, Scholarship Student (2022 - Present)</li>
+                        </ul>
+                    </section>
+
+                    <section class="profile-section">
+                        <h3>Awards and Honors</h3>
+                        <ul class="profile-list">
+                            <li>1st Prize - XII International Balys Dvarionas Competition</li>
+                            <li>Eisteddfods - Prizewinner at Sydney and St George competitions</li>
+                        </ul>
+                    </section>
+
+                    <section class="profile-section">
+                        <h3>Mentorship</h3>
+                        <ul class="profile-list">
+                            <li>Dr. Paul Rickard-Ford - Distinguished piano educator, Sydney Conservatorium of Music</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
 
         <section class="stage">
             <div class="panel">
@@ -546,6 +780,45 @@
             </aside>
         </section>
     </main>
+    <script>
+        const openProfileButton = document.getElementById("open-profile");
+        const closeProfileButton = document.getElementById("close-profile");
+        const profileModal = document.getElementById("profile-modal");
+        const profileDialog = profileModal.querySelector(".modal-dialog");
+        let lastFocusedElement = null;
+
+        function openProfileModal() {
+            lastFocusedElement = document.activeElement;
+            profileModal.classList.add("is-open");
+            profileModal.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            closeProfileButton.focus();
+        }
+
+        function closeProfileModal() {
+            profileModal.classList.remove("is-open");
+            profileModal.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+
+        openProfileButton.addEventListener("click", openProfileModal);
+        closeProfileButton.addEventListener("click", closeProfileModal);
+
+        profileModal.addEventListener("click", (event) => {
+            if (!profileDialog.contains(event.target)) {
+                closeProfileModal();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && profileModal.classList.contains("is-open")) {
+                closeProfileModal();
+            }
+        });
+    </script>
 </body>
 
 </html>
