@@ -215,6 +215,26 @@
             gap: 16px;
         }
 
+        .track-group + .track-group {
+            margin-top: 28px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(226, 184, 111, 0.12);
+        }
+
+        .track-group-title {
+            margin: 0 0 8px;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 2.1rem;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .track-group-note {
+            margin: 0 0 18px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
         .track {
             padding: 20px;
             border: 1px solid rgba(226, 184, 111, 0.12);
@@ -542,11 +562,12 @@
                 <h1>Grand Piano Recordings</h1>
                 <p class="intro">
                     A recital page for recent takes by Andrew Yin, now set against a full-page Boston grand piano image
-                    and expanded to include the complete current programme. Every recording below plays directly in the
-                    browser.
+                    and expanded to include the complete current programme, with practice takes separated from the main
+                    performance set. Every recording below plays directly in the browser.
                 </p>
                 <div class="hero-meta">
-                    <span class="hero-pill">7 recordings</span>
+                    <span class="hero-pill">10 recordings</span>
+                    <span class="hero-pill">8 performances + 2 practice takes</span>
                     <span class="hero-pill">Solo piano</span>
                     <span class="hero-pill">Boston grand atmosphere</span>
                 </div>
@@ -562,7 +583,7 @@
                     <h2 class="profile-name">Andrew Yin</h2>
                     <p class="profile-note">
                         A growing collection of recent piano recordings, ranging from Bach and Mozart to
-                        Faur&eacute;, Jongen, and Sch&uuml;tt.
+                        Faur&eacute;, Jongen, Sch&uuml;tt, and Emil von Sauer, with separate practice takes.
                     </p>
                 </div>
             </aside>
@@ -642,109 +663,168 @@
             <div class="panel">
                 <p class="panel-title">Programme</p>
                 <div class="tracks">
-                    <article class="track">
-                        <div class="track-header">
-                            <h2 class="track-title">J.S. Bach</h2>
-                            <span class="track-meta">Prelude &amp; Fuge in G major, BWV 860</span>
-                        </div>
-                        <p class="track-note">
-                            Clear counterpoint and forward motion for a poised opening to the set.
+                    <section class="track-group" aria-labelledby="performances-title">
+                        <h2 class="track-group-title" id="performances-title">Performance Recordings</h2>
+                        <p class="track-group-note">
+                            Finished takes from the current recital set, grouped as the main listening programme.
                         </p>
-                        <audio controls>
-                            <source src="260314_2301_J.S.Bach - Prelude &amp; Fuge in G major, BWV 860.mp3"
-                                type="audio/mpeg">
-                            Your browser does not support audio playback.
-                        </audio>
-                    </article>
 
-                    <article class="track">
-                        <div class="track-header">
-                            <h2 class="track-title">Mozart</h2>
-                            <span class="track-meta">Piano Sonata No. 2 in F major, K.280</span>
-                        </div>
-                        <p class="track-note">
-                            Classical balance, bright motion, and a lighter opening texture.
-                        </p>
-                        <audio controls>
-                            <source src="260314_2332_Mozart - Piano Sonata No. 2 in F major, K.280.mp3"
-                                type="audio/mpeg">
-                            Your browser does not support audio playback.
-                        </audio>
-                    </article>
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">J.S. Bach</h2>
+                                <span class="track-meta">Prelude &amp; Fuge in G major, BWV 860</span>
+                            </div>
+                            <p class="track-note">
+                                Clear counterpoint and forward motion for a poised opening to the set.
+                            </p>
+                            <audio controls>
+                                <source src="260314_2301_J.S.Bach - Prelude &amp; Fuge in G major, BWV 860.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
 
-                    <article class="track">
-                        <div class="track-header">
-                            <h2 class="track-title">Mendelssohn</h2>
-                            <span class="track-meta">Songs Without Words, Op. 67 No. 2</span>
-                        </div>
-                        <p class="track-note">
-                            A lyrical center point with a gentler, singing line through the middle of the programme.
-                        </p>
-                        <audio controls>
-                            <source src="260314_2356_Mendelssohn - Songs Without Words Op. 67 No. 2.mp3"
-                                type="audio/mpeg">
-                            Your browser does not support audio playback.
-                        </audio>
-                    </article>
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Mozart</h2>
+                                <span class="track-meta">Piano Sonata No. 2 in F major, K.280</span>
+                            </div>
+                            <p class="track-note">
+                                Classical balance, bright motion, and a lighter opening texture.
+                            </p>
+                            <audio controls>
+                                <source src="260314_2332_Mozart - Piano Sonata No. 2 in F major, K.280.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
 
-                    <article class="track">
-                        <div class="track-header">
-                            <h2 class="track-title">Faur&eacute;</h2>
-                            <span class="track-meta">Impromptu No. 1, Op. 25</span>
-                        </div>
-                        <p class="track-note">
-                            Richer harmony and a darker shimmer as the page moves into late-Romantic colour.
-                        </p>
-                        <audio controls>
-                            <source src="260315_0002_Faur%C3%A9%27s%20Impromptu%20No.%201%20Op.%2025.mp3"
-                                type="audio/mpeg">
-                            Your browser does not support audio playback.
-                        </audio>
-                    </article>
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Mendelssohn</h2>
+                                <span class="track-meta">Songs Without Words, Op. 67 No. 2</span>
+                            </div>
+                            <p class="track-note">
+                                A lyrical center point with a gentler, singing line through the middle of the programme.
+                            </p>
+                            <audio controls>
+                                <source src="260314_2356_Mendelssohn - Songs Without Words Op. 67 No. 2.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
 
-                    <article class="track">
-                        <div class="track-header">
-                            <h2 class="track-title">Joseph Haydn</h2>
-                            <span class="track-meta">Piano Sonata in G Minor</span>
-                        </div>
-                        <p class="track-note">
-                            Restless phrasing and classical intensity with a sharper dramatic profile.
-                        </p>
-                        <audio controls>
-                            <source src="260315_1330_Joseph Haydn - Piano Sonata in G Minor.mp3" type="audio/mpeg">
-                            Your browser does not support audio playback.
-                        </audio>
-                    </article>
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Faur&eacute;</h2>
+                                <span class="track-meta">Impromptu No. 1, Op. 25</span>
+                            </div>
+                            <p class="track-note">
+                                Richer harmony and a darker shimmer as the page moves into late-Romantic colour.
+                            </p>
+                            <audio controls>
+                                <source src="260315_0002_Faur%C3%A9%27s%20Impromptu%20No.%201%20Op.%2025.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
 
-                    <article class="track">
-                        <div class="track-header">
-                            <h2 class="track-title">Jongen</h2>
-                            <span class="track-meta">&Eacute;tude de concert No. 1, Op. 65</span>
-                        </div>
-                        <p class="track-note">
-                            A more virtuosic turn in the programme, with broader sonority and a denser surface.
-                        </p>
-                        <audio controls>
-                            <source src="260315_1336_Jongen - Etude de concert No. 1, op. 65 - 1920.mp3"
-                                type="audio/mpeg">
-                            Your browser does not support audio playback.
-                        </audio>
-                    </article>
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Joseph Haydn</h2>
+                                <span class="track-meta">Piano Sonata in G Minor</span>
+                            </div>
+                            <p class="track-note">
+                                Restless phrasing and classical intensity with a sharper dramatic profile.
+                            </p>
+                            <audio controls>
+                                <source src="260315_1330_Joseph Haydn - Piano Sonata in G Minor.mp3" type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
 
-                    <article class="track">
-                        <div class="track-header">
-                            <h2 class="track-title">Eduard Sch&uuml;tt</h2>
-                            <span class="track-meta">Romance, Op. 38 No. 2</span>
-                        </div>
-                        <p class="track-note">
-                            A warm, intimate close with a softer melodic profile and a more reflective finish.
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Jongen</h2>
+                                <span class="track-meta">&Eacute;tude de concert No. 1, Op. 65</span>
+                            </div>
+                            <p class="track-note">
+                                A more virtuosic turn in the programme, with broader sonority and a denser surface.
+                            </p>
+                            <audio controls>
+                                <source src="260315_1336_Jongen - Etude de concert No. 1, op. 65 - 1920.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
+
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Eduard Sch&uuml;tt</h2>
+                                <span class="track-meta">Romance, Op. 38 No. 2</span>
+                            </div>
+                            <p class="track-note">
+                                A warm, intimate close with a softer melodic profile and a more reflective finish.
+                            </p>
+                            <audio controls>
+                                <source src="260315_1343_Eduard%20Sch%C3%BCtt%20-%20Romance,%20Op%2038%20No%202.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
+
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Emil von Sauer</h2>
+                                <span class="track-meta">Etudes de Concert No. 3 in B Major</span>
+                            </div>
+                            <p class="track-note">
+                                A brilliant late addition with a more glittering concert character and compact virtuosity.
+                            </p>
+                            <audio controls>
+                                <source src="260315_2333_%5BEmil%20von%20Sauer%5D%20Etudes%20de%20Concert%20No.3%20in%20B%20Major.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
+                    </section>
+
+                    <section class="track-group" aria-labelledby="practise-title">
+                        <h2 class="track-group-title" id="practise-title">Practise Recordings</h2>
+                        <p class="track-group-note">
+                            Working takes separated from the main performance section because the filenames mark them as practice recordings.
                         </p>
-                        <audio controls>
-                            <source src="260315_1343_Eduard%20Sch%C3%BCtt%20-%20Romance,%20Op%2038%20No%202.mp3"
-                                type="audio/mpeg">
-                            Your browser does not support audio playback.
-                        </audio>
-                    </article>
+
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Mendelssohn</h2>
+                                <span class="track-meta">MWV O2, Piano Concerto in A Minor</span>
+                            </div>
+                            <p class="track-note">
+                                Practice take captured as part of concerto preparation, kept here outside the recital sequence.
+                            </p>
+                            <audio controls>
+                                <source src="260317_0059_practise_Mendelssohn - MWV O2 - Piano Concerto in A Minor.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
+
+                        <article class="track">
+                            <div class="track-header">
+                                <h2 class="track-title">Mendelssohn</h2>
+                                <span class="track-meta">MWV O2, Piano Concerto in A Minor</span>
+                            </div>
+                            <p class="track-note">
+                                A second practice pass of the same concerto material, available separately for comparison.
+                            </p>
+                            <audio controls>
+                                <source src="260317_0101_practise_Mendelssohn - MWV O2 - Piano Concerto in A Minor.mp3"
+                                    type="audio/mpeg">
+                                Your browser does not support audio playback.
+                            </audio>
+                        </article>
+                    </section>
                 </div>
             </div>
 
@@ -764,10 +844,11 @@
                 </blockquote>
                 <p class="quote-note">
                     The page now carries a stronger recital identity: your portrait in the opening panel, the full set
-                    of uploaded recordings, and a Boston piano image washed into the entire background.
+                    of uploaded recordings, a dedicated practice section, and a Boston piano image washed into the entire background.
                 </p>
                 <ul class="stats">
-                    <li>Featured composers: Bach, Mozart, Mendelssohn, Faur&eacute;, Haydn, Jongen, Sch&uuml;tt.</li>
+                    <li>Featured composers: Bach, Mozart, Mendelssohn, Faur&eacute;, Haydn, Jongen, Sch&uuml;tt, Emil von Sauer.</li>
+                    <li>Programme split: 8 performance recordings and 2 practice takes.</li>
                     <li>Audio format: MP3 playback directly in browser controls.</li>
                     <li>Layout: responsive for both desktop and mobile screens.</li>
                 </ul>
