@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrew Yin | Grand Piano Recordings</title>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
@@ -362,6 +371,18 @@
             color: var(--gold);
         }
 
+        #google_translate_element {
+            color: var(--text);
+        }
+
+        #google_translate_element select {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 5px;
+        }
+
         .modal {
             position: fixed;
             inset: 0;
@@ -556,6 +577,7 @@
 
 <body>
     <main class="shell">
+        <div id="google_translate_element" style="text-align: center; margin-bottom: 20px;"></div>
         <section class="hero">
             <div class="hero-copy">
                 <p class="eyebrow">Private Salon Session</p>
