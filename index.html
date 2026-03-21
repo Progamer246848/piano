@@ -5,15 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrew Yin | Grand Piano Recordings</title>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
+    <style>
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(20, 15, 11, 0.95);
+            border: 1px solid rgba(226, 184, 111, 0.3);
+            border-radius: 8px;
+            padding: 0;
+            backdrop-filter: blur(10px);
         }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        .language-selector select {
+            appearance: none;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 0.95rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-family: "Manrope", sans-serif;
+        }
+
+        .language-selector select:hover {
+            color: var(--gold);
+        }
+
+        .language-selector::after {
+            content: "▼";
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+    </style>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
@@ -371,18 +401,6 @@
             color: var(--gold);
         }
 
-        #google_translate_element {
-            color: var(--text);
-        }
-
-        #google_translate_element select {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-            border: 1px solid var(--line);
-            border-radius: 4px;
-            padding: 5px;
-        }
-
         .modal {
             position: fixed;
             inset: 0;
@@ -576,8 +594,58 @@
 </head>
 
 <body>
+    <div class="language-selector">
+        <select id="language-select" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Português</option>
+            <option value="nl">Nederlands</option>
+            <option value="pl">Polski</option>
+            <option value="ru">Русский</option>
+            <option value="uk">Українська</option>
+            <option value="cs">Čeština</option>
+            <option value="sk">Slovenčina</option>
+            <option value="hu">Magyar</option>
+            <option value="ro">Română</option>
+            <option value="bg">Български</option>
+            <option value="hr">Hrvatski</option>
+            <option value="sr">Српски</option>
+            <option value="tr">Türkçe</option>
+            <option value="el">Ελληνικά</option>
+            <option value="sv">Svenska</option>
+            <option value="da">Dansk</option>
+            <option value="no">Norsk</option>
+            <option value="fi">Suomi</option>
+            <option value="ca">Català</option>
+            <option value="gl">Galego</option>
+            <option value="cy">Cymraeg</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="zh">中文</option>
+            <option value="th">ไทย</option>
+            <option value="vi">Tiếng Việt</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="ms">Bahasa Melayu</option>
+            <option value="fil">Filipino</option>
+            <option value="hi">हिन्दी</option>
+            <option value="bn">বাংলা</option>
+            <option value="ta">தமிழ்</option>
+            <option value="te">తెలుగు</option>
+            <option value="ml">മലയാളം</option>
+            <option value="ar">العربية</option>
+            <option value="he">עברית</option>
+            <option value="fa">فارسی</option>
+            <option value="ur">اردو</option>
+            <option value="af">Afrikaans</option>
+            <option value="sq">Shqip</option>
+            <option value="hy">Հայերեն</option>
+            <option value="ka">ქართული</option>
+        </select>
+    </div>
     <main class="shell">
-        <div id="google_translate_element" style="text-align: center; margin-bottom: 20px;"></div>
         <section class="hero">
             <div class="hero-copy">
                 <p class="eyebrow">Private Salon Session</p>
@@ -921,6 +989,133 @@
                 closeProfileModal();
             }
         });
+    </script>
+
+    <script>
+        // Translation system
+        const translations = {
+            es: {
+                "Private Salon Session": "Sesión Privada de Salón",
+                "Grand Piano Recordings": "Grabaciones de Piano de Cola",
+                "A recital page for recent takes by Andrew Yin, now set against a full-page Boston grand piano image and expanded to include the complete current programme, with practice takes separated from the main performance set. Every recording below plays directly in the browser.": "Una página de recital para grabaciones recientes de Andrew Yin, ahora establecida contra una imagen de piano de cola de Boston de página completa y ampliada para incluir el programa actual completo, con grabaciones de práctica separadas del conjunto de desempeño principal. Cada grabación a continuación se reproduce directamente en el navegador.",
+                "10 recordings": "10 grabaciones",
+                "8 performances + 2 practice takes": "8 representaciones + 2 tomas de práctica",
+                "Solo piano": "Piano solo",
+                "Boston grand atmosphere": "Atmósfera de piano de cola de Boston",
+                "Performer": "Intérprete",
+                "Andrew Yin": "Andrew Yin",
+                "A growing collection of recent piano recordings, ranging from Bach and Mozart to Fauré, Jongen, Schütt, and Emil von Sauer, with separate practice takes.": "Una colección en crecimiento de grabaciones de piano recientes, que van desde Bach y Mozart hasta Fauré, Jongen, Schütt y Emil von Sauer, con grabaciones de práctica separadas.",
+                "Artist Profile": "Perfil del Artista",
+                "Pianist": "Pianista"
+            },
+            fr: {
+                "Private Salon Session": "Séance Privée en Salon",
+                "Grand Piano Recordings": "Enregistrements de Piano à Queue",
+                "A recital page for recent takes by Andrew Yin, now set against a full-page Boston grand piano image and expanded to include the complete current programme, with practice takes separated from the main performance set. Every recording below plays directly in the browser.": "Une page de récital pour les prises récentes d'Andrew Yin, maintenant sur fond d'une image de piano à queue Boston pleine page et étendue pour inclure le programme actuel complet, avec les prises d'entraînement séparées de l'ensemble de performance principal. Chaque enregistrement ci-dessous se lit directement dans le navigateur.",
+                "10 recordings": "10 enregistrements",
+                "8 performances + 2 practice takes": "8 représentations + 2 prises de pratique",
+                "Solo piano": "Piano solo",
+                "Boston grand atmosphere": "Atmosphère de piano à queue de Boston",
+                "Performer": "Interprète",
+                "Andrew Yin": "Andrew Yin",
+                "A growing collection of recent piano recordings, ranging from Bach and Mozart to Fauré, Jongen, Schütt, and Emil von Sauer, with separate practice takes.": "Une collection croissante d'enregistrements de piano récents, allant de Bach et Mozart à Fauré, Jongen, Schütt et Emil von Sauer, avec des prises d'entraînement séparées.",
+                "Artist Profile": "Profil d'Artiste",
+                "Pianist": "Pianiste"
+            },
+            de: {
+                "Private Salon Session": "Private Salonsitzung",
+                "Grand Piano Recordings": "Konzertflügelaufnahmen",
+                "A recital page for recent takes by Andrew Yin, now set against a full-page Boston grand piano image and expanded to include the complete current programme, with practice takes separated from the main performance set. Every recording below plays directly in the browser.": "Eine Rezitalsseite mit neuesten Aufnahmen von Andrew Yin, nun vor einem Bild eines Bostonflügels im Vollformat angezeigt und erweitert, um das vollständige aktuelle Programm einzubeziehen, mit Übungsaufnahmen separat vom Hauptauftritt. Jede Aufnahme unten wird direkt im Browser abgespielt.",
+                "10 recordings": "10 Aufnahmen",
+                "8 performances + 2 practice takes": "8 Auftritte + 2 Übungsaufnahmen",
+                "Solo piano": "Soloklavier",
+                "Boston grand atmosphere": "Boston-Flügel-Atmosphäre",
+                "Performer": "Künstler",
+                "Andrew Yin": "Andrew Yin",
+                "A growing collection of recent piano recordings, ranging from Bach and Mozart to Fauré, Jongen, Schütt, and Emil von Sauer, with separate practice takes.": "Eine wachsende Sammlung neuester Klavieraufnahmen, die von Bach und Mozart bis Fauré, Jongen, Schütt und Emil von Sauer reichen, mit separaten Übungsaufnahmen.",
+                "Artist Profile": "Künstlerprofil",
+                "Pianist": "Pianist"
+            },
+            it: {
+                "Private Salon Session": "Sessione Privata in Salotto",
+                "Grand Piano Recordings": "Registrazioni di Pianoforte a Coda",
+                "Performer": "Interprete",
+                "Andrew Yin": "Andrew Yin",
+                "Artist Profile": "Profilo dell'Artista",
+                "Pianist": "Pianista"
+            },
+            ja: {
+                "Private Salon Session": "プライベートサロンセッション",
+                "Grand Piano Recordings": "グランドピアノ録音",
+                "Performer": "パフォーマー",
+                "Andrew Yin": "アンドリュー・インI'm",
+                "Artist Profile": "アートプロフィール",
+                "Pianist": "ピアニスト"
+            },
+            zh: {
+                "Private Salon Session": "私人沙龙会议",
+                "Grand Piano Recordings": "大钢琴录音",
+                "Performer": "表演者",
+                "Andrew Yin": "尹安德鲁",
+                "Artist Profile": "艺术家档案",
+                "Pianist": "钢琴家"
+            },
+            ko: {
+                "Private Salon Session": "프라이빗 살롱 세션",
+                "Grand Piano Recordings": "그랜드 피아노 녹음",
+                "Performer": "공연자",
+                "Andrew Yin": "앤드류 인",
+                "Artist Profile": "아티스트 프로필",
+                "Pianist": "피아니스트"
+            }
+        };
+
+        let currentLanguage = 'en';
+        let originalTexts = {};
+
+        function saveOriginalTexts() {
+            document.querySelectorAll('h1, h2, h3, p, span, button, .hero-pill, .profile-name, .profile-note, .eyebrow, .modal-title, .modal-subtitle, .profile-section h3, .profile-section p').forEach(el => {
+                const text = el.textContent.trim();
+                if (text && text.length > 0) {
+                    originalTexts[el] = text;
+                }
+            });
+        }
+
+        function translatePage(lang) {
+            if (lang === 'en') {
+                // Restore original English text
+                Object.entries(originalTexts).forEach(([el, text]) => {
+                    if (el.textContent.trim() !== text) {
+                        el.textContent = text;
+                    }
+                });
+                currentLanguage = 'en';
+                return;
+            }
+
+            const langTranslations = translations[lang] || {};
+            
+            document.querySelectorAll('h1, h2, h3, p, span, button, .hero-pill, .profile-name, .profile-note, .eyebrow, .modal-title, .modal-subtitle, .profile-section h3, .profile-section p').forEach(el => {
+                const originalText = originalTexts[el] || el.textContent.trim();
+                if (langTranslations[originalText]) {
+                    el.textContent = langTranslations[originalText];
+                }
+            });
+
+            currentLanguage = lang;
+        }
+
+        document.getElementById('language-select').addEventListener('change', (e) => {
+            translatePage(e.target.value);
+        });
+
+        // Initialize on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', saveOriginalTexts);
+        } else {
+            saveOriginalTexts();
+        }
     </script>
 </body>
 
