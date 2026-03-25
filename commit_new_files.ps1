@@ -48,8 +48,6 @@ try {
         Write-Host "Committing: $message"
         Run-Git @("commit", "-m", $message)
 
-        Write-Host "Pushing to $Remote/$Branch"
-        Run-Git @("push", $Remote, $Branch)
     }
 
     Write-Host ""
